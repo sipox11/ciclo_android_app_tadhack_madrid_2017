@@ -1,8 +1,12 @@
 package ciclo.tadhack.com.ciclotadhack;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewTreeObserver;
@@ -68,6 +72,8 @@ public class MainActivity extends Activity implements
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+        // Permissions
+        checkPermissions();
 
         // Initialize the member variables
         mToggleConnectButton = (ToggleButton) findViewById(R.id.toggleConnectButton);
@@ -109,12 +115,12 @@ public class MainActivity extends Activity implements
         // If the app was launched by a different app, then get any parameters; otherwise use default settings
         Intent intent = getIntent();
         mHost.setText(intent.hasExtra("host") ? intent.getStringExtra("host") : "prod.vidyo.io");
-        mToken.setText(intent.hasExtra("token") ? intent.getStringExtra("token") : "cHJvdmlzaW9uAGNpY2xvdXNlcmFuZHJvaWRhcHBAMWJlODY1LnZpZHlvLmlvADYzNjczOTg2OTYyAAA4M2QwNGJkOGRhODE2MTJmMGNjYzEyMDQ5NjJiNGY1NGRmZmJmZjM0ZGFmNWEzMWFiM2QzMzMxYmVlOTNhOGUyZTUxZGQ5YjdjMTZlZDc2NzhlMTlmMTVmNmE2ZTU3ZTU=");
-        mDisplayName.setText(intent.hasExtra("displayName") ? intent.getStringExtra("displayName") : "AndroidGuest");
-        mResourceId.setText(intent.hasExtra("resourceId") ? intent.getStringExtra("resourceId") : "cicloRoom");
+        mToken.setText(intent.hasExtra("token") ? intent.getStringExtra("token") : "cHJvdmlzaW9uAGNpY2xvdXNlcmFuZHJvaWRhcHBAMWJlODY1LnZpZHlvLmlvADYzNjc0MDAwNjU1AAAyNDBjMmEwODg2MmJiNjM0YzAzMGVkMjliMzI0Y2I2MmFkMTdmMDZiZmVjY2NjMGNkOGM5M2ZhZTk0N2ZmZjBhMDFlYmUzZThhNjJlMGRiZjE0MWFhNTg4YTRiODZjNjg=");
+        mDisplayName.setText(intent.hasExtra("display_name") ? intent.getExtras().getString("display_name") : "Sony");
+        mResourceId.setText(intent.hasExtra("resource_id") ? intent.getExtras().getString("resource_id") : "cicloRoom");
         mReturnURL = intent.hasExtra("returnURL") ? intent.getStringExtra("returnURL") : null;
         mHideConfig = intent.getBooleanExtra("hideConfig", false);
-        mAutoJoin = intent.getBooleanExtra("autoJoin", false);
+        mAutoJoin = intent.getBooleanExtra("autoJoin", true);
         mAllowReconnect = intent.getBooleanExtra("allowReconnect", true);
         mEnableDebug = intent.getBooleanExtra("enableDebug", false);
         mExperimentalOptions = intent.hasExtra("experimentalOptions") ? intent.getStringExtra("experimentalOptions") : null;
@@ -286,6 +292,33 @@ public class MainActivity extends Activity implements
     /*
      * Private Utility Functions
      */
+
+    private void checkPermissions(){
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED || true) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.CAMERA)) {
+
+                // Show an expanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+
+            } else {
+
+                // No explanation needed, we can request the permission.
+
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.CAMERA, Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.ACCESS_WIFI_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.MODIFY_AUDIO_SETTINGS, Manifest.permission.CAPTURE_AUDIO_OUTPUT, Manifest.permission.RECORD_AUDIO, Manifest.permission.INTERNET}, 0);
+
+                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+            }
+        }
+    }
 
     // Refresh the UI
     private void RefreshUI() {

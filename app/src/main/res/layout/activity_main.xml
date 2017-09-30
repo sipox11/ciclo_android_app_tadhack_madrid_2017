@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
     tools:context="ciclo.tadhack.com.ciclotadhack.MainActivity">
 
@@ -56,9 +57,13 @@
                         android:layout_weight="1"
                         android:layout_height="0dp"
                         android:paddingBottom="0dp"
+                        android:paddingLeft="50dp"
+                        android:paddingStart="50dp"
+                        android:paddingRight="50dp"
+                        android:paddingEnd="50dp"
                         android:focusable="true"
                         android:focusableInTouchMode="true"
-                        android:src="@drawable/vidyo_io_vertical_dark_at_2x"/>
+                        android:src="@drawable/logo"/>
 
                     <View
                         android:layout_width="match_parent"
