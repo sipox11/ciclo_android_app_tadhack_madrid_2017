@@ -115,7 +115,7 @@ public class MainActivity extends Activity implements
         // If the app was launched by a different app, then get any parameters; otherwise use default settings
         Intent intent = getIntent();
         mHost.setText(intent.hasExtra("host") ? intent.getStringExtra("host") : "prod.vidyo.io");
-        mToken.setText(intent.hasExtra("token") ? intent.getStringExtra("token") : "cHJvdmlzaW9uAGNpY2xvdXNlcmFuZHJvaWRhcHBAMWJlODY1LnZpZHlvLmlvADYzNjc0MDAwNjU1AAAyNDBjMmEwODg2MmJiNjM0YzAzMGVkMjliMzI0Y2I2MmFkMTdmMDZiZmVjY2NjMGNkOGM5M2ZhZTk0N2ZmZjBhMDFlYmUzZThhNjJlMGRiZjE0MWFhNTg4YTRiODZjNjg=");
+        mToken.setText(intent.hasExtra("token") ? intent.getStringExtra("token") : "cHJvdmlzaW9uAGNpY2xvdXNlcmFuZHJvaWRhcHBAMWJlODY1LnZpZHlvLmlvADYzNjc0MDExNDMxAAAyZmMwZDk1ODQ5MjhiNjRkN2Y3ZjMxYjU2MTJjODE5ZTM5YjE3YzVhMzJhNWUzMmZmZDdiMGMyOTVjMmVkNDBmYTMzZWVhYWVjN2ZhZGEwNGNlNDRlZDEwNDI5ZDllMmE=");
         mDisplayName.setText(intent.hasExtra("display_name") ? intent.getExtras().getString("display_name") : "Sony");
         mResourceId.setText(intent.hasExtra("resource_id") ? intent.getExtras().getString("resource_id") : "cicloRoom");
         mReturnURL = intent.hasExtra("returnURL") ? intent.getStringExtra("returnURL") : null;
